@@ -52,14 +52,13 @@ public class UserService
         }
     }
     //task1
-    public List<Users> SearchByEmailOrName()
+    public List<Users> SearchByEmailOrName(string text)
     {
         using (var connection = context.GetDbConnection())
         {
             connection.Open();
-            var sql = @"select * from users
-                        where name like '%john%' or email like '%john%';";
-            var result = connection.Query<Users>(sql).ToList();
+            var cmd = $@"select * from users WHERE fullname LIKE @name OR email LIKE @email";
+            var result = connection.Query<Users>(cmd, new { Name = $"%{text}%", Email = $"%{text}%"}).ToList();
             return result;
         }
     }

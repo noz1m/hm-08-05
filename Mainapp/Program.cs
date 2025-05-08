@@ -1,66 +1,38 @@
-﻿// create table users
-// (
-// 	id serial primary key,
-// 	fullName varchar(50) not null,
-// 	email varchar(30) unique,
-// 	phone varchar(30)
-// );
+﻿using Domain.DTO;
+using Domain.Entities;
+using Infrastructure.Data;
+using Infrastructure.Services;
+using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-// insert into users (fullName, email, phone) values
-// ('Alice Johnson', 'alice@example.com', '123-456-7890'),
-// ('Bob Smith', 'bob@example.com', '234-567-8901'),
-// ('Charlie Brown', 'charlie@example.com', '345-678-9012'),
-// ('Diana Prince', 'diana@example.com', '456-789-0123'),
-// ('Ethan Hunt', 'ethan@example.com', '567-890-1234');
+var userService = new UserService();
+var result = userService.SearchByEmailOrName();
+foreach (var item in result)
+{
+    Console.WriteLine(item);
+}
 
-// select * from users
+var marketService = new MarketService();
+var result1 = marketService.GetAllMarkets();
+foreach (var item in result1)
+{
+    Console.WriteLine(item);
+}
 
-// create table markets
-// (
-// 	id serial primary key,
-// 	name varchar(50) not null,
-// 	address varchar(50)
-// );
+var categoryService = new CategoryService();
+var result2 = categoryService.GetAllCategory();
+foreach (var item in result2)
+{
+    Console.WriteLine(item);
+}
 
-// insert into markets (name, address) values
-// ('Fresh Market', '123 Main St'),
-// ('Green Mart', '456 Oak Ave'),
-// ('SuperSaver', '789 Elm St'),
-// ('Budget Bazaar', '321 Pine Rd'),
-// ('Organic Hub', '654 Maple Ln');
-
-// select * from markets
-
-// create table category
-// (
-// 	id serial primary key,
-// 	name varchar(50) not null
-// );
-
-// insert into category (name) values
-// ('Fruits'),
-// ('Vegetables'),
-// ('Dairy'),
-// ('Bakery'),
-// ('Meat');
-
-// select * from category
-
-// create table products
-// (
-// 	id serial primary key,
-// 	name varchar(50) unique not null,
-// 	price decimal,
-// 	categoryId int references category(id),
-// 	marketId int references markets(id),
-// 	quantity int
-// );
-
-// insert into products (name, price, categoryId, marketId, quantity) values
-// ('Apple', 0.99, 1, 1, 100),
-// ('Carrot', 0.49, 2, 2, 200),
-// ('Milk', 1.29, 3, 3, 150),
-// ('Bread', 1.99, 4, 4, 80),
-// ('Chicken Breast', 5.49, 5, 5, 60);
-
-// select * from products
+var userMarketCountService = new UserService();
+var result3 = userMarketCountService.GetUserMarketCounts();
+foreach (var item in result3)
+{
+    Console.WriteLine(item);
+}
